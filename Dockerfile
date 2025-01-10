@@ -1,4 +1,13 @@
-FROM ubuntu:latest
-LABEL authors="osami"
+FROM golang:1.23.0-alpine AS builder
 
-ENTRYPOINT ["top", "-b"]
+WORKDIR /app
+
+COPY . .
+RUN go mod download
+RUN go build -o main cmd/pitition/main.go
+
+FROM alpine:3.15
+
+WORKDIR /app
+COPY --from=builder /app/main .
+CMD [ "./main" ]

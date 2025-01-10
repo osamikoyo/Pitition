@@ -1,0 +1,5 @@
+hostname = "localhost"
+port = 8008
+read = 30
+wtite = 30
+idle = 30
