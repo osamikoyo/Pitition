@@ -21,8 +21,7 @@ func New() Pititioner {
 }
 
 func (s Service) Add(pitition models.Pitition) error {
-	//TODO implement me
-	panic("implement me")
+	return s.Storage.Add(pitition)
 }
 
 func (s Service) Get(name string) ([]models.Pitition, error) {

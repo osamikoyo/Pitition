@@ -27,16 +27,27 @@ func New() Database {
 }
 
 func (d Database) Add(pitition models.Pitition) error {
-	//TODO implement me
-	panic("implement me")
+	return d.Create(&pitition).Error
 }
 
 func (d Database) Get(name string) (models.Pitition, error) {
-	//TODO implement me
-	panic("implement me")
+	var pit models.Pitition
+	if err := d.Where(&models.Pitition{
+		Title: name,
+	}).Find(&pit).Error; err != nil {
+		return models.Pitition{}, err
+	}
+
+	return pit, nil
 }
 
 func (d Database) UpdateLike(name string) error {
-	//TODO implement me
-	panic("implement me")
+	var pit models.Pitition
+	if err := d.Where(&models.Pitition{
+		Title: name,
+	}).Find(&pit).Error; err != nil {
+		return err
+	}
+
+	return d.Model(&pit).Update("title", pit.Likes+1).Error
 }
