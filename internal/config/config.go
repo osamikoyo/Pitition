@@ -8,9 +8,9 @@ import (
 type Config struct {
 	Hostname     string `toml:"hostname"`
 	Port         uint64 `toml:"port"`
-	ReadTimeOut  uint16 `toml:"read"`
-	WriteTimeOut uint16 `toml:"write"`
-	IdleTimeOut  uint16 `toml:"idle"`
+	ReadTimeOut  string `toml:"read"`
+	WriteTimeOut string `toml:"write"`
+	IdleTimeOut  string `toml:"idle"`
 }
 
 func New() Config {

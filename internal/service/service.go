@@ -25,11 +25,9 @@ func (s Service) Add(pitition models.Pitition) error {
 }
 
 func (s Service) Get(name string) ([]models.Pitition, error) {
-	//TODO implement me
-	panic("implement me")
+	return s.Storage.Get(name)
 }
 
 func (s Service) Like(name string) error {
-	//TODO implement me
-	panic("implement me")
+	return s.Storage.UpdateLike(name)
 }

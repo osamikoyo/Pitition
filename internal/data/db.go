@@ -9,7 +9,7 @@ import (
 
 type Storage interface {
 	Add(pitition models.Pitition) error
-	Get(name string) (models.Pitition, error)
+	Get(name string) ([]models.Pitition, error)
 	UpdateLike(name string) error
 }
 
@@ -30,12 +30,12 @@ func (d Database) Add(pitition models.Pitition) error {
 	return d.Create(&pitition).Error
 }
 
-func (d Database) Get(name string) (models.Pitition, error) {
-	var pit models.Pitition
+func (d Database) Get(name string) ([]models.Pitition, error) {
+	var pit []models.Pitition
 	if err := d.Where(&models.Pitition{
 		Title: name,
 	}).Find(&pit).Error; err != nil {
-		return models.Pitition{}, err
+		return []models.Pitition{}, err
 	}
 
 	return pit, nil
